@@ -1,0 +1,23 @@
+<div class="myBox">
+<b>
+    <h1>toDo List</h1>
+</b>
+
+<ul ng-repeat="toDo in toDoList track by $index">
+    <p>
+      {{toDo.entry}}
+
+      <button ng-click="removeEntry(1, $index)">X</button>
+    </p>
+</ul>
+
+</div>
+<ul>
+    <td>Enter first name:</td>
+    <input type="text" ng-model="entryField">
+    <button ng-click="addEntry(1)">Add Entry</button>
+    <button ng-click="addEntry(0)">Add Entry(Intentional Fail Edition™)</button>
+</ul>
+<ul>
+    {{statusMessage}}
+</ul>
