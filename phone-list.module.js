@@ -16,6 +16,7 @@ angular.module('phoneList', [])
   .controller('studentController', function ($scope, $q, $timeout) {
     $scope.entryField = "Test"
     $scope.statusMessage = "Nothing going on right now!"
+    $scope.isDisabled = false;
     
     $scope.toDoList = [
         {
@@ -28,6 +29,7 @@ angular.module('phoneList', [])
     ];
 
     $scope.addEntry = function (status) {
+      $scope.isDisabled = true;
       var choice = false;
       if(status === 1) {
         choice = true;
@@ -36,14 +38,17 @@ angular.module('phoneList', [])
       
       promise.then(function(newList) {
          $scope.toDoList.push({entry: newList[Object.keys(newList).length - 1].entry});
+         $scope.isDisabled = false;
          $scope.statusMessage = "Successfully added an entry!";
          console.log($scope.toDoList)
       }, function(failText) {
+        $scope.isDisabled = false;
         $scope.statusMessage = failText;
       });
     }
 
     $scope.removeEntry = function (status, index) {
+      $scope.isDisabled = true;
       var choice = false;
       if(status === 1) {
         choice = true;
@@ -52,15 +57,13 @@ angular.module('phoneList', [])
       
       promise.then(function(newList) {
          $scope.toDoList = newList;
+         $scope.isDisabled = false;
          $scope.statusMessage = "Successfully removed an entry!";
          console.log($scope.toDoList)
       }, function(failText) {
+        $scope.isDisabled = false;
         $scope.statusMessage = failText;
       });
-    }
-
-    $scope.deleteEntry = function (index) {
-        $scope.toDoList.splice(index, 1);
     }
 
     // True/False will force a resolved/rejected function.

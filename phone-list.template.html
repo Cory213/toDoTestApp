@@ -7,7 +7,7 @@
     <p>
       {{toDo.entry}}
 
-      <button ng-click="removeEntry(1, $index)">X</button>
+      <button ng-click="removeEntry(1, $index)" ng-disabled = "isDisabled">X</button>
     </p>
 </ul>
 
@@ -15,8 +15,8 @@
 <ul>
     <td>Enter first name:</td>
     <input type="text" ng-model="entryField">
-    <button ng-click="addEntry(1)">Add Entry</button>
-    <button ng-click="addEntry(0)">Add Entry(Intentional Fail Edition™)</button>
+    <button ng-click="addEntry(1)" ng-disabled = "isDisabled">Add Entry</button>
+    <button ng-click="addEntry(0)" ng-disabled = "isDisabled">Add Entry(Intentional Fail Edition™)</button>
 </ul>
 <ul>
     {{statusMessage}}
